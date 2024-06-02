@@ -1,20 +1,25 @@
 <template>
-    <div class=" IndexPage ">
-        <br>
+
+  <div class="IndexPage">
+    <h1 class="title rounded rounded-lg">VueJS Shopping App</h1>
+    <br>
         <div class=" row ">
+            <!-- Product list -->
             <div class=" col-md-9 ">
                 <div class=" row gx-4 gy-4 row-cols-3 ">
                     <div class=" col " v-for="( product, id) in list_products " :key="id">
                         <div class=" p-3 border bg-light ">
                             <h5>{{ product.name }}</h5>
                             <p>{{ product.desc }} </p>
-                            <p>{{ product.price }} €</p>
+                            <p>{{ product.price }}€ </p>
                             <button type=" button " class=" btn btn-success btn-sm "
                                 v-on:click=" add_to_cart(product.id)"> Ajouter au panier </button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Cart -->
             <div class=" col-6 col-md-3 ">
 
                 <div class=" col ">
@@ -27,12 +32,13 @@
                         <div class=" p-3 border bg-light ">
                             {{ get_info_product(id) }}
                             <h5>{{ desc_product.name }}</h5>
-                            <h6>Quantité : {{ value }}</h6>
+                            <h6> Quantité: {{ value }}</h6>
                             <button type=" button " class=" btn btn-success btn-sm "
                                 v-on:click=" remove_from_cart(id)"> Supprimer </button>
                         </div>
                     </div>
 
+                    <!-- show total -->
                     <div class=" col ">
                         <div class=" p-3 border bg-success ">
                             <h5> Total : {{ total_price }} </h5>
@@ -109,5 +115,11 @@ export default {
 }
 </script>
 
-<!-- Add " scoped " attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.title {
+  font-size: 2rem;
+  color: white;
+  background-color: #6b747c;
+  padding: 2rem;
+}
+</style>

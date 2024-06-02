@@ -4,7 +4,6 @@
 
 <template>
   <div>
-    <h1>Gestion de Stock et Panier</h1>
     <ul>
       <li v-for="product in stock.get_list_product()" :key="product.id">
         {{ product.name }} - {{ product.price }}€
@@ -24,5 +23,10 @@
 </template>
 
 <style scoped>
+.title {
+  color: blue;
+  background-color: black;
+  background-size: 10px;
+}
 
 </style>
