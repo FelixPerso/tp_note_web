@@ -1,4 +1,4 @@
-# webshop
+# frontend
 
 ## Project setup
 ```
