@@ -1,18 +1,7 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import CartModel from "../models/shoppingCart.js";
 
 const router = express.Router();
-
-const cartSchema = new mongoose.Schema({
-    products: [
-        {
-            productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-            quantity: Number
-        }
-    ]
-});
-
-const CartModel = mongoose.model('Cart', cartSchema);
 
 router.get('/cart', async (req, res) => {
     const cart = await CartModel.findOne().populate('products.productId');

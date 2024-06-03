@@ -1,16 +1,7 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import ProductModel from "../models/products.js";
 
 const router = express.Router();
-
-const productSchema = new mongoose.Schema({
-    name: String,
-    desc: String,
-    price: Number,
-    stock: Number
-});
-
-const ProductModel = mongoose.model('Product', productSchema);
 
 router.get('/products', async (req, res) => {
     const products = await ProductModel.find();
