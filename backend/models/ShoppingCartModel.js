@@ -6,7 +6,7 @@ const MONGO_URI = process.env.MONGO_URL;
 const cartSchema = new mongoose.Schema({
     products: [
         {
-            productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+            productId: { type: mongoose.Schema.Types.ObjectId, ref: 'products' },
             quantity: Number
         }
     ]
@@ -18,8 +18,7 @@ mongoose.connect(MONGO_URI)
     .then(async () => {
         const cart = [
             {
-                products: [
-                ]
+                products: []
             }
         ];
         try {

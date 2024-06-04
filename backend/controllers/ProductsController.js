@@ -1,29 +1,25 @@
 import express from 'express';
-import ProductModel from "../models/products.js";
+import ProductModel from "../models/ProductsModel.js";
 
 const router = express.Router();
 
 router.get('/products', async (req, res) => {
-    const products = await ProductModel.find();
-    res.json(products);
+    try {
+        const products = await ProductModel.find();
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching products', error });
+    }
 });
 
-router.post('/products', async (req, res) => {
-    const product = new ProductModel(req.body);
-    await product.save();
-    res.status(201).json(product);
-});
-
-router.put('/products/:id', async (req, res) => {
+router.get('/products/:id', async (req, res) => {
     const { id } = req.params;
-    const product = await ProductModel.findByIdAndUpdate(id, req.body, { new: true });
-    res.json(product);
-});
-
-router.delete('/products/:id', async (req, res) => {
-    const { id } = req.params;
-    await ProductModel.findByIdAndDelete(id);
-    res.status(204).send();
+    try {
+        const product = await ProductModel.findById(id, req.body, { new: true });
+        res.json(product);
+    } catch (error) {
+        res.status(400).json({ message: 'Error updating product', error });
+    }
 });
 
 export default router;
